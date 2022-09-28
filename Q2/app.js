@@ -5,6 +5,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, "views"));
 
+app.use('/views', express.static(path.join(__dirname, "views")));``
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
@@ -20,6 +21,8 @@ app.get("/", (req, res) => {
 app.get("/8ball", (req, res) => {
     const index=Math.floor(Math.random() * arr.length);
     const answer=arr[index];
-    res.render("form",{answer});
+
+
+    res.send(answer);
 });
 app.listen(3000);
